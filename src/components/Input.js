@@ -18,7 +18,6 @@ class Input extends Component {
 
   sendMessage(e) {
     e.preventDefault()
-    console.log(this.state)
     this.props.sendMessage(this.state)
     this.setState({
       message: ''

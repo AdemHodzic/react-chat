@@ -17,20 +17,28 @@ class App extends Component {
     }
 
     this.sendMessage = this.sendMessage.bind(this)
+    this.addMessage = this.addMessage.bind(this)
   }
 
   componentDidMount() {
     this.state.socket.onopen = () => this.setState({connected: true})
     this.state.socket.onmessage = function(e) {
-      this.setState({
-        message: e.data
-      })
+      const msg = JSON.parse(e.data)
+      this.addMessage(msg)
     }.bind(this)
   }
 
   sendMessage(data) {
+    const msg = (new Message(data.message, data.name)).toJSON();
+    //this.addMessage(msg)
+    this.state.socket.send(JSON.stringify(msg));
+  }
+
+  addMessage(msg) {
+    const newState = this.state.messages;
+    newState.push(msg);
     this.setState({
-      messages: this.state.messages.push(new Message(data.message, data.name))
+      messages: newState
     })
   }
 

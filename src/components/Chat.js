@@ -10,7 +10,13 @@ class Chat extends Component {
   }
 
   render() {
-    let elements = this.state.messages.map(item => <li key={item.message}><strong>{item.name}:    </strong><span>{this.message}</span></li>)
+    let elements = this.state.messages.map(item => ( 
+      <li key={item.message}>
+        <strong>{item.name}:</strong>
+        <span>{item.message} </span>
+      </li>
+    ))
+      
     return(
       <div>
         <ul>
