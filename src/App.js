@@ -5,6 +5,8 @@ import Chat from './components/Chat';
 
 import Message from './models/message';
 
+import Grid from '@material-ui/core/Grid';
+
 class App extends Component {
 
 
@@ -12,7 +14,7 @@ class App extends Component {
     super()
     this.state = {
       messages: [],
-      socket: new WebSocket('ws://localhost:5000/ws'),
+      socket: new WebSocket('ws://chat-go-websockets.herokuapp.com/ws'),
       connected: false
     }
 
@@ -44,13 +46,34 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        {this.state.connected && <div>Connected</div>}
-        <Chat messages={this.state.messages}/>
-        <Input sendMessage={this.sendMessage}/>
-      </div>
+        <Grid 
+          direction="column"
+          alignItems="center"
+          justify="center"
+          alignContent="center"
+          container>
+
+          <Grid item>
+            {this.state.connected && <div>Connected</div>}
+          </Grid>        
+  
+          <Grid item>
+            <Chat messages={this.state.messages}/>
+          </Grid>        
+  
+          <Grid item>
+            <Input sendMessage={this.sendMessage}/>
+          </Grid>        
+        
+        </Grid>
     );
   }
 }
 
 export default App;
+
+/**
+ * 
+        
+      
+ */
