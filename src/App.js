@@ -57,7 +57,7 @@ class App extends Component {
             {this.state.connected && <div>Connected</div>}
           </Grid>        
   
-          <Grid item>
+          <Grid item >
             <Chat messages={this.state.messages}/>
           </Grid>        
   
