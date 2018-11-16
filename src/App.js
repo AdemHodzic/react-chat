@@ -47,24 +47,23 @@ class App extends Component {
   render() {
     return (
         <Grid 
-          direction="column"
-          alignItems="center"
-          justify="center"
-          alignContent="center"
+          direction="column-reverse"
+          justify="space-between"
+          alignItems="strech"
           container>
-
+        
           <Grid item>
-            {this.state.connected && <div>Connected</div>}
+            <Input sendMessage={this.sendMessage}/>
           </Grid>        
-  
+
           <Grid item >
             <Chat messages={this.state.messages}/>
           </Grid>        
   
           <Grid item>
-            <Input sendMessage={this.sendMessage}/>
+            {this.state.connected && <div>Connected</div>}
           </Grid>        
-        
+         
         </Grid>
     );
   }
